@@ -165,6 +165,21 @@ var taskStatusChangeHandler = function(event) {
     }
 };
 
+var saveTasks = function() {
+    localStorage.setItem("tasks", JSON.stringify(tasks));
+};
+
+var loadTasks = function() {
+    tasks = localStorage.getItem("tasks");
+  
+    if (!tasks) {
+      tasks = [];
+      return false;
+    }
+  
+    tasks = JSON.parse(tasks);
+  };
+
 formEl.addEventListener("submit", taskFormHandler);
 pageContentEl.addEventListener("click", taskButtonHandler);
 pageContentEl.addEventListener("change", taskStatusChangeHandler);
